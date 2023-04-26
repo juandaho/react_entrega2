@@ -4,50 +4,37 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, NavLink, BrowserRouter } from "react-router-dom";
 import { Inicio } from "./components/Inicio"
+import { Terapias } from "./components/Terapias"
+import { Libros } from "./components/Libros"
 import NavBar from "./components/NavBar/NavBar";
-import ProductList from "./components/ProductList";
-import Header from "./components/Header";
-import { useState } from "react";
+//import ProductList from "./components/ProductList";
+//import Header from "./components/Header";
+//import { useState } from "react";
+import { Cursos } from "./components/Cursos";
 
-function App() {
+
+
+function App() {;
   
-
-  const [allProducts, setAllProducts] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [countProducts, setCountProducts] = useState(0);
-
   return (
   <BrowserRouter>
     <NavBar />
-    <Header
-      allProducts={allProducts}
-      setAllProducts={setAllProducts}
-      total={total}
-      setTotal={setTotal}
-      countProducts={countProducts}
-      setCountProducts={setCountProducts}
+    
+    
 
-
-    />
-
-    <ProductList
-      allProducts={allProducts}
-      setAllProducts={setAllProducts}
-      total={total}
-      setTotal={setTotal}
-      countProducts={countProducts}
-      setCountProducts={setCountProducts}
-
-    />
 
     <Routes>
+    
       <Route path="/" element={<Inicio />} />
+      <Route path="/inicio" element={<Inicio />} />
+      <Route path="/terapias" element={<Terapias />} />
+      <Route path="/cursos" element={<Cursos />} />
     </Routes>
 
-    <footer>
 
-    </footer>
+
   </BrowserRouter>
+
 
   );
 }
