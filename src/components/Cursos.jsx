@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { useState } from "react";
-import { Header } from './Header';
-import { ProductList } from './ProductList';
+import { Header } from './ProductsCart';
+import { ProductList } from './ProductListCursos';
 
 
 export const Cursos = () => {

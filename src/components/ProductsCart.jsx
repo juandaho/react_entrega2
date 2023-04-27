@@ -2,22 +2,31 @@ import React from 'react'
 import { useState } from 'react';
 
 
-export const Header = ({ 
+export const Header = ({
   allProducts,
-	setAllProducts,
-	total,
-	countProducts,
-	setCountProducts,
-	setTotal, }) => {
+  setAllProducts,
+  total,
+  countProducts,
+  setCountProducts,
+  setTotal,
+}) => {
+  const [active, setActive] = useState(false);
 
-  const [active, setActive] = React.useState(false)
+  const onDeleteProduct = product => {
+    const results = allProducts.filter(
+      item => item.id !== product.id
+    );
 
+    setTotal(total - product.price * product.quantity);
+    setCountProducts(countProducts - product.quantity);
+    setAllProducts(results);
+  };
 
   const onCleanCart = () => {
-		setAllProducts([]);
-		setTotal(0);
-		setCountProducts(0);
-	};
+    setAllProducts([]);
+    setTotal(0);
+    setCountProducts(0);
+  };
 
   return (
     <header>
@@ -62,39 +71,40 @@ export const Header = ({
                       <span className="precio-producto-carrito">{product.price}</span>
                     </div>
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="icon-close"
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth='1.5'
+                      stroke='currentColor'
+                      className='icon-close'
+                      onClick={() => onDeleteProduct(product)}
                     >
                       <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M6 18L18 6M6 6l12 12'
                       />
-                   </svg>
-									</div>
-								))}
-							</div>
+                    </svg>
+                  </div>
+                ))}
+              </div>
 
-							<div className='cart-total'>
-								<h3>Total:</h3>
-								<span className='total-pagar'>${total}</span>
-							</div>
+              <div className='cart-total'>
+                <h3>Total:</h3>
+                <span className='total-pagar'>${total}</span>
+              </div>
 
-							<button className='btn-clear-all' onClick={onCleanCart}>
-								Vaciar Carrito
-							</button>
-						</>
-					) : (
-						<p className='cart-empty'>El carrito está vacío</p>
-					)}
-				</div>
-			</div>
-		</header>
-	);
+              <button className='btn-clear-all' onClick={onCleanCart}>
+                Vaciar Carrito
+              </button>
+            </>
+          ) : (
+            <p className='cart-empty'>El carrito está vacío</p>
+          )}
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
