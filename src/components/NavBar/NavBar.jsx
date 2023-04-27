@@ -1,12 +1,17 @@
-import CartWidget from "../CartWidget/CartWidget";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <NavLink
+          to="/cursos"
+          activeClassName={({ isActive }) =>
+            isActive ? "active" : "nav-link active"
+          }
+        >
           AL-MENTE
-        </a>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -20,18 +25,26 @@ const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <a className="nav-link active" aria-current="page" href="#">
+            <NavLink
+              to="/cursos"
+              activeClassName={({ isActive }) =>
+                isActive ? "active" : "nav-link active"
+              }
+              aria-current="page"
+            >
               Nuestro Cursos
-            </a>
-            <a className="nav-link" href="#">
-            Terapias
-            </a>
-
+            </NavLink>
+            <NavLink
+              to="/terapias"
+              activeClassName={({ isActive }) =>
+                isActive ? "active" : "nav-link active"
+              }
+            >
+              Terapias
+            </NavLink>
           </div>
         </div>
       </div>
-
-    
     </nav>
   );
 };
